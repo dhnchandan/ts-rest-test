@@ -11,5 +11,9 @@
   "devDependencies": {
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
+  },
+  "dependencies": {
+    "@ts-rest/express": "^3.36.0",
+    "zod": "^3.22.4"
   }
 }
