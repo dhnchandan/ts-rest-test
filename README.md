@@ -4,5 +4,5 @@
 
 - Express
 - React
-- ts-rest
-- React Query
+- ts-rest (<https://ts-rest.com/>)
+- React Query (<https://tanstack.com/query/latest/>)
