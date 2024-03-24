@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev:old": "vite",
+    "dev": "tsx watch lib/index.ts",
     "tsx": "tsx watch lib/index.ts",
     "build": "tsc && vite build",
     "preview": "vite preview"
