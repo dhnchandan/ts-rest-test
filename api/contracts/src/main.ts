@@ -1,24 +1,33 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import { initContract } from '@ts-rest/core';
+import { z } from 'zod';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const c = initContract();
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const PostSchema = z.object({
+    id: z.number(),
+    title: z.string(),
+    description: z.string(),
+});
+
+export const contract = c.router({
+    createPost: {
+        method: "POST",
+        path: "/",
+        body: z.object({
+            title: z.string(),
+            description: z.string(),
+        }),
+        responses: {
+            201: PostSchema,
+        },
+        summary: "Create new post",
+    },
+    getPosts: {
+        method: "GET",
+        path: "/",
+        responses: {
+            200: z.array(PostSchema),
+        },
+        summary: "Get all posts",
+    },
+});
